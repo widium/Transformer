@@ -6,15 +6,22 @@
 #    By: ebennace <ebennace@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 11:07:24 by ebennace          #+#    #+#              #
-#    Updated: 2022/09/19 11:19:59 by ebennace         ###   ########.fr        #
+#    Updated: 2022/10/02 11:27:46 by ebennace         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+import tensorflow as tf
 from tensorflow import Tensor
 from keras.layers import Dense
 
 from tensorflow.nn import softmax
 from tensorflow.math import sqrt
+from tensorflow.math import exp
+from tensorflow import sequence_mask
+from tensorflow import cast
+from tensorflow import range
+from tensorflow import reduce_sum
+from tensorflow import expand_dims
 from tensorflow import matmul
 from tensorflow import reshape
 from tensorflow import transpose
@@ -58,25 +65,6 @@ def compute_heads_dimensions(representation : int, nbr_heads : int):
     heads_representation = representation // nbr_heads
     
     return (heads_representation) 
-
-def duplicate_tensor(Tensor : Tensor, nbr_heads : int, heads_dim : int):
-    
-    batch_size = shape(Tensor)[0]
-    sequence = shape(Tensor)[1]
-    
-    Tensor = reshape(Tensor, [batch_size, sequence, nbr_heads, heads_dim])
-    Tensor = transpose(Tensor, [0, 2, 1, 3])
-    Tensor = reshape(Tensor, [batch_size * nbr_heads, sequence, heads_dim])
-    
-    return (Tensor)
-
-def duplicate_all_tensor(Q : Tensor, K : Tensor, V :Tensor, nbr_heads : int, heads_dim : int):
-    
-    Qs = duplicate_tensor(Q, nbr_heads, heads_dim)
-    Ks = duplicate_tensor(K, nbr_heads, heads_dim)
-    Vs = duplicate_tensor(V, nbr_heads, heads_dim)
-    
-    return (Qs, Ks, Vs)
     
 def concatenate_attention_heads(Attention_heads : Tensor, representation : int, nbr_heads : int, heads_dim : int, batch_size : int, sequence : int):
     
