@@ -6,7 +6,7 @@
 #    By: ebennace <ebennace@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 11:22:45 by ebennace          #+#    #+#              #
-#    Updated: 2022/10/02 11:34:34 by ebennace         ###   ########.fr        #
+#    Updated: 2022/10/03 07:50:05 by ebennace         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,11 @@ from compute import create_attention_vector, normalize_vector
 from compute import create_vector_probability_attention, add_attention_to_value
 
 
-def create_mask(size : int):
+def create_mask(size : int)-> Tensor:
     mask = sequence_mask(tf.range(size) + 1, size)
     mask = cast(mask, tf.float32)
     mask = expand_dims(mask, axis=0)
+    return (mask)
 
 def masked_softmax(X : Tensor , mask : Tensor):
     x_masked = X * mask
