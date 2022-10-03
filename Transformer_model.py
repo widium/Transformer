@@ -1,15 +1,19 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Transformer.py                                     :+:      :+:    :+:    #
+#    Transformer_model.py                                     :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: ebennace <ebennace@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 11:34:39 by ebennace          #+#    #+#              #
-#    Updated: 2022/10/03 11:38:03 by ebennace         ###   ########.fr        #
+#    Updated: 2022/10/03 14:20:09 by ebennace         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+import tensorflow as tf
+
+
+from logging import DEBUG
 from keras.layers import Input
 from mask import create_mask
 from Encoding import Encoder_Layer
@@ -17,10 +21,9 @@ from Decoding import Decoder_Layer
 from Embedding import Embedding_Layer
 from keras import Model
 from keras.layers import Dense
-from tensorflow.nn import softmax
 from tensorflow import Tensor
 
-NBR_TOKEN = 5
+NBR_TOKEN = 8
 INPUT_SIZE = 5
 OUTPUT_SIZE = 6
 MASK_SIZE = 6
@@ -37,8 +40,10 @@ def Transformer(coding_block : int, dim : int, nbr_heads : int):
     
     encoder = Encoder_Layer(coding_block, dim, nbr_heads)(input_embedding)
     decoder = Decoder_Layer(coding_block, dim, nbr_heads, mask)((output_embedding, encoder))
-
     
-    model = Model([input_token, output_token], decoder)
+    dense = Dense(NBR_TOKEN)(decoder)
+    prediction = tf.nn.softmax(dense, axis=-1)
+    
+    model = Model([input_token, output_token], prediction)
     model.summary()
     return (model)
