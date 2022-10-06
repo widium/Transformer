@@ -10,16 +10,19 @@
     - [3. Multi Head Attention](#multi-head-attention)
 - [2. Embedding](#embedding)
 - [3. Positional Encoding](#positional-encoding)
+- [4. Normalize Layer](#normalize-layer)
 - [4. Encoder](#encoder)
 - [5. Decoder](#decoder)
 
 ## Understanding Architecture
 Transformer use the [Attention Mecanism](#attention-mecanism) for learn to extract features with [Encoder](#encoder) and [Decoder](#decoder)
+
 ![](https://i.imgur.com/dggyZEz.png)
 
 ## Attention Mecanism
 Contrary to Multi-Layer-Perceptron or CNN, the Attention mechanism allows a dynamic connection between 2 Layers,  it allows to choose which information will be sent to the next layer !
 the model learn on which information it should focus its attention.
+
 ![](https://i.imgur.com/eL8ptdI.png)
 ### Scaled Dot Product Attention 
 
@@ -45,7 +48,8 @@ K = Dense(256, name= 'key')(Tensor)
 V = Dense(256, name= 'value')(Tensor)
 ~~~
 ***
-#### Compute Attention
+###  Compute Attention
+
 ~~~python
 def compute_attention(Q : Tensor, K : Tensor, V : Tensor):
     
@@ -145,6 +149,72 @@ Create Multi-Sub-Query and Multi [Attention Head](#scaled-dot-product-attention 
 Soon operational
 ## Positional Encoding
 Soon operational
+## Normalize Layer
+- Residual Layer Normalisation after [Multi_Head_Attention](#multi-head-attention)
+~~~python
+from keras.layers import Normalization
+
+normalization = Normalization(axis=None)(multi_head_attention_layer + embedding_layer)
+~~~
+- This layer allows to Normalize the [Multi_Head_Attention](#multi-head-attention) to avoid **Vanishing & Exploding Gradients** Problem
+
+![](https://i.imgur.com/fydPCTR.png)
+
 ## Encoder
 
+![](https://i.imgur.com/8DVleQT.png)
+
+### The [Class Encoding_layer()](source/Encoder/Encoding.py)
+allows to encode the **Embedding** input with :
+- [Multi Head Attention](#multi-head-attention)
+- Layer_Normalization of attention
+
+it allows to learn the Specialization of Attention with its [Multi Head Attention](#multi-head-attention) in order to encode the sequence in the best way
+
+~~~python
+attention = multi_head_attention(x)
+attention_normalize = normalization(attention + x)
+dense = dense(attention_normalize)
+output = normalization(dense + attention_normalize)
+~~~
+
+### The [Class Encoder_Layer()](source/Encoder/Encoding.py)
+
+~~~python
+for encoding_layer in self.encoding_layer_list:
+    x = encoding_layer(x)
+return (x);
+~~~
+
+- The Encoder calls **N** times the [Class Encoding_layer()](source/Encoder/Encoding.py) to get several semantic representations of the same **Sequence** which allows to capture a **semantic diversity** of the same input ! and give after to the [Decoder Layer](#decoder)
+
+- Each [Class Encoding_layer()](source/Encoder/Encoding.py) **receives in input the output of the previous one** 
+- it **re-encodes** each previous [Class Encoding_layer()](source/Encoder/Encoding.py) which allows to get an optimal Encoding Data !
+
+
+![](https://i.imgur.com/8tj3aYI.png)
+
 ## Decoder
+### Masked Multi Head Attention
+### [Class Decoding_layer()](source/Decoder/Decoding.py)
+#### Make the [[Scaled Dot Product Attention|Attention]] on : 
+- *on the Output Embedding*
+- *on the Output of the Encoder Layer in relation to the Attention created on the Output Embedding*.
+
+![](https://i.imgur.com/I5ge44l.png)
+***
+- we **create** a [Masked Multi-head Attention](source/Attention/Multi_Head_Attention.py) to make attention on the already predicted tokens 
+- Then we **create** a [Multi_head_Encoder_Attention_layer](source/Attention/Multi_Head_Attention.py) to :
+	- create attention on the [Class Encoder_Layer](source/Encoder/Encoding.py)
+	- in relation to the attention create **on the already predicted tokens** 
+- We **create** a final projection 
+- As for the [Class Encoder_Layer](source/Encoder/Encoding.py) we *Normalize* after each [Multi Head Attention](#multi-head-attention) and [projection](#query-projection).
+
+~~~~C
+self_attention = masked_multi_head_attention(output_embedding)
+attention_normalize = normalization(self_attention + output_embedding)
+encoder_attention = encoder_multi_head_attention((attention_normalize, encoder, encoder))
+encoder_attention_normalize = normalization(attention_normalize + encoder_attention)
+dense = dense(encoder_attention_normalize)
+dene_normalize = normalization(encoder_attention_normalize + dense)
+~~~~
