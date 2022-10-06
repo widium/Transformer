@@ -15,10 +15,10 @@ import tensorflow as tf
 
 from logging import DEBUG
 from keras.layers import Input
-from mask import create_mask
-from Encoding import Encoder_Layer
-from Decoding import Decoder_Layer
-from Embedding import Embedding_Layer
+from source.mask import create_mask
+from source.Encoding import Encoder_Layer
+from source.Decoding import Decoder_Layer
+from source.Embedding import Embedding_Layer
 from keras import Model
 from keras.layers import Dense
 from tensorflow import Tensor

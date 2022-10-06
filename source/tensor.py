@@ -6,12 +6,12 @@
 #    By: ebennace <ebennace@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 11:27:35 by ebennace          #+#    #+#              #
-#    Updated: 2022/10/02 11:28:21 by ebennace         ###   ########.fr        #
+#    Updated: 2022/10/06 09:37:48 by ebennace         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 from tensorflow import Tensor
-from compute import shape, reshape, transpose
+from source.compute import shape, reshape, transpose
 
 def duplicate_tensor(Tensor : Tensor, nbr_heads : int, heads_dim : int):
     

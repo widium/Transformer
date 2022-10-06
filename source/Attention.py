@@ -6,14 +6,14 @@
 #    By: ebennace <ebennace@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 11:09:12 by ebennace          #+#    #+#              #
-#    Updated: 2022/09/19 11:18:03 by ebennace         ###   ########.fr        #
+#    Updated: 2022/10/06 09:37:48 by ebennace         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import tensorflow as tf
 from keras.layers import Dense
 
-from compute import compute_attention
+from source.compute import compute_attention
 
 
 class Attention_Layer(tf.keras.layers.Layer):
