@@ -6,7 +6,7 @@
 #    By: ebennace <ebennace@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 11:07:00 by ebennace          #+#    #+#              #
-#    Updated: 2022/10/06 09:38:13 by ebennace         ###   ########.fr        #
+#    Updated: 2022/10/06 09:47:23 by ebennace         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,12 +15,12 @@ from tensorflow import Tensor
 from keras.layers import Dense
 from tensorflow import shape
 
-from source.compute import compute_heads_dimensions
-from source.mask import compute_masked_attention, create_mask
-from source.tensor import duplicate_all_tensor
-from source.compute import compute_attention
-from source.compute import concatenate_attention_heads
-from source.compute import create_multi_heads_attention_model
+from source.Attention.compute import compute_heads_dimensions
+from source.Attention.mask import compute_masked_attention, create_mask
+from source.Attention.tensor import duplicate_all_tensor
+from source.Attention.compute import compute_attention
+from source.Attention.compute import concatenate_attention_heads
+from source.Attention.compute import create_multi_heads_attention_model
 
 
 class Multi_Head_Attention_Layer(tf.keras.layers.Layer):

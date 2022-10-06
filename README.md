@@ -121,6 +121,7 @@ attention = compute_attention(Q, K, V)
 
 ### Multi-head Attention
 Create Multi-Sub-Query and Multi [Attention Head](#scaled-dot-product-attention )
+- ### [Class Multi_Head_Attention_Layer](source/Multi_Head_Attention.py)
 ### **$$Multihead(Q, W, K) = Concat(head_1, head_2, ..., head_h)W^O$$**
 ### **$$\text {where head}_i = Attention(QW^Q_i, KW^K_i, VW^V_i)$$**
 ![](https://i.imgur.com/rWszwyg.png)

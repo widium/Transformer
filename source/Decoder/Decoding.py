@@ -6,7 +6,7 @@
 #    By: ebennace <ebennace@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 11:12:36 by ebennace          #+#    #+#              #
-#    Updated: 2022/10/06 09:38:08 by ebennace         ###   ########.fr        #
+#    Updated: 2022/10/06 09:46:10 by ebennace         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ import tensorflow as tf
 from tensorflow import Tensor
 from keras.layers import Dense
 
-from source.Multi_Head_Attention import Masked_Multi_Head_Attention_Layer, Multi_Head_Encoder_Attention_Layer
+from source.Attention.Multi_Head_Attention import Masked_Multi_Head_Attention_Layer, Multi_Head_Encoder_Attention_Layer
 from keras.layers import Normalization
 
 
