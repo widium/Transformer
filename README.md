@@ -7,10 +7,10 @@
 - [2. Embedding](source/Embedding)
 - [3. Positional Encoding](source/Embedding)
 - [4. Normalize Layer](source/Normalize/)
-- [4. Encoder](source/Encoder/Encoder/)
-- [5. Decoder](source/Decoder/Decoder/)
+- [4. Encoder](source/Encoder)
+- [5. Decoder](source/Decoder)
 
 ## Understanding Architecture
-Transformer use the [Attention Mecanism](source/Attention) for learn to extract features with [Encoder](source/Encoder/Encoder/) and [Decoder](source/Decoder/Decoder/)
+Transformer use the [Attention Mecanism](source/Attention) for learn to extract features with [Encoder](source/Encoder) and [Decoder](source/Decoder)
 
 ![](https://i.imgur.com/dggyZEz.png)
