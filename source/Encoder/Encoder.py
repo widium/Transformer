@@ -6,12 +6,12 @@
 #    By: ebennace <ebennace@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 11:12:29 by ebennace          #+#    #+#              #
-#    Updated: 2022/10/06 14:37:58 by ebennace         ###   ########.fr        #
+#    Updated: 2022/10/07 11:21:47 by ebennace         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import tensorflow as tf
-from ..Encoding.Encoding import Encoding_Layer
+from .Encoding import Encoding_Layer
     
 class Encoder_Layer(tf.keras.layers.Layer):
     

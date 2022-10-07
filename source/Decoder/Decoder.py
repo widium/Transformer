@@ -6,14 +6,14 @@
 #    By: ebennace <ebennace@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 11:12:36 by ebennace          #+#    #+#              #
-#    Updated: 2022/10/06 14:38:46 by ebennace         ###   ########.fr        #
+#    Updated: 2022/10/07 11:26:04 by ebennace         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import tensorflow as tf
 from tensorflow import Tensor
 
-from ..Decoding.Decoding_layer import Decoding_Layer
+from .Decoding_layer import Decoding_Layer
 
 class Decoder_Layer(tf.keras.layers.Layer):
     

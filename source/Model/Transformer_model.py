@@ -15,7 +15,7 @@ import tensorflow as tf
 
 from logging import DEBUG
 from keras.layers import Input
-from source.Mask.mask import create_mask
+from source.Attention.Multi_Head.mask import create_mask
 from source.Encoder.Encoder import Encoder_Layer
 from source.Decoder.Decoder import Decoder_Layer
 from source.Embedding.Embedding import Embedding_Layer

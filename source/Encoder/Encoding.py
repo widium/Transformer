@@ -6,14 +6,14 @@
 #    By: ebennace <ebennace@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/06 14:35:58 by ebennace          #+#    #+#              #
-#    Updated: 2022/10/06 14:37:21 by ebennace         ###   ########.fr        #
+#    Updated: 2022/10/07 11:22:32 by ebennace         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import tensorflow as tf
 from keras.layers import Dense
 
-from source.Attention.Multi.Multi_Head_Attention import Multi_Head_Attention_Layer
+from ..Attention.Multi_Head.Multi_Head_Attention import Multi_Head_Attention_Layer
 from keras.layers import Normalization
 
 class  Encoding_Layer(tf.keras.layers.Layer):

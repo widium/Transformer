@@ -6,7 +6,7 @@
 #    By: ebennace <ebennace@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/19 11:07:24 by ebennace          #+#    #+#              #
-#    Updated: 2022/10/02 11:27:46 by ebennace         ###   ########.fr        #
+#    Updated: 2022/10/07 11:25:00 by ebennace         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ from tensorflow import expand_dims
 from tensorflow import matmul
 from tensorflow import reshape
 from tensorflow import transpose
-from tensorflow import shape
+
 
 def create_attention_vector(Q : Tensor, K : Tensor):
     

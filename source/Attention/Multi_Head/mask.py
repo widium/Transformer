@@ -6,15 +6,22 @@
 #    By: ebennace <ebennace@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/02 11:22:45 by ebennace          #+#    #+#              #
-#    Updated: 2022/10/06 14:30:58 by ebennace         ###   ########.fr        #
+#    Updated: 2022/10/07 11:20:27 by ebennace         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-from source.Attention.compute_attention.compute import Tensor, tf
-from source.Attention.compute_attention.compute import sequence_mask, cast, expand_dims
-from source.Attention.compute_attention.compute import exp, reduce_sum
-from source.Attention.compute_attention.compute import create_attention_vector, normalize_vector
-from source.Attention.compute_attention.compute import create_vector_probability_attention, add_attention_to_value
+import tensorflow as tf
+
+from tensorflow import Tensor
+from tensorflow import sequence_mask
+from tensorflow import cast
+from tensorflow import expand_dims
+from tensorflow import reduce_sum
+from tensorflow import exp
+
+from ..compute import create_attention_vector
+from ..compute import normalize_vector
+from ..compute import add_attention_to_value
 
 
 def create_mask(size : int)-> Tensor:
