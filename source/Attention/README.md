@@ -15,7 +15,6 @@ the model learn on which information it should focus its attention.
 
 To create Attention we need to create 3 [Projection](#query-projection) of the Input Tensor called **$\large Q$ $\large K$ $\large V$** and [Compute Attention](compute.py)
 
-![](https://i.imgur.com/Sq2oXr2.png)
 ***
 ### Query Projection
 
@@ -23,7 +22,7 @@ To create Attention we need to create 3 [Projection](#query-projection) of the I
 - $\LARGE K$ **= List** of the information
 - $\LARGE V$ **= Value** of the information
 
-*$\large Q$* asks *$\large K$* if he has any important information to give him, if yes we get his value with *$\large V$*
+$\large Q$ asks $\large K$ if he has any important information to give him, if yes we get his value with $\large V$
 
 ![](https://i.imgur.com/Hypsu3O.png)
 
