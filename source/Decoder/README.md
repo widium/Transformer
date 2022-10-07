@@ -4,8 +4,8 @@
 
 ## [Class Decoding_layer()](Decoding_layer.py)
 #### Make the Scaled Dot Product Attention on : 
-- *on the Output Embedding*
-- *on the Output of the Encoder Layer in relation to the Attention created on the Output Embedding*.
+- *the Output Embedding*
+- *the Output of the Encoder Layer in relation with the Attention created on the Output Embedding*.
 
 ![](https://i.imgur.com/I5ge44l.png)
 ***
