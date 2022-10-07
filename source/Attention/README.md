@@ -19,9 +19,9 @@ To create Attention we need to create 3 [Projection](#query-projection) of the I
 ***
 ### Query Projection
 
-- *$\LARGE Q =$* **Importance** of the information
-- *$\LARGE K =$* **List** of the information
-- *$\LARGE V =$* **Value** of the information
+- $\LARGE Q$ **= Importance** of the information
+- $\LARGE K$ **= List** of the information
+- $\LARGE V$ **= Value** of the information
 
 *$\large Q$* asks *$\large K$* if he has any important information to give him, if yes we get his value with *$\large V$*
 
