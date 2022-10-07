@@ -10,9 +10,7 @@
 ![](https://i.imgur.com/I5ge44l.png)
 ***
 - we **create** a [Masked Multi-head Attention](../Attention/Multi_Head/multi_masked.py) to make attention on the already predicted tokens 
-- Then we **create** a [Multi_head_Encoder_Attention_layer](../Attention/Multi_Head/multi_encoder_attention.py) to :
-	- create attention on the [Class Encoder_Layer](../Encoder/)
-	- in relation to the attention create **on the already predicted tokens** 
+- Then we **create** a [Multi_head_Encoder_Attention_layer](../Attention/Multi_Head/multi_encoder_attention.py) to create attention on the [Class Encoder_Layer](../Encoder/) in relation to the attention create **on the already predicted tokens** 
 - We **create** a final projection 
 - As for the [Class Encoder_Layer](../Encoder/) we *Normalize* after each [Multi Head Attention](../Attention/Multi_Head/) and [projection](../Attention/README.md#query-projection).
 
