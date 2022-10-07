@@ -32,6 +32,10 @@ is to call $\large N$ times the [Class Decoding_layer()](Decoding_layer.py) to r
 ~~~C
 decoder = Decoder_Layer(coding_block, dim, nbr_heads, mask)((output_embedding, encoder))
 ~~~
+~~~python
+for decoder_layer in self.decoder_layer_list:
+            decoder_output = decoder_layer((decoder_output, encoder))
+~~~
 ![](https://i.imgur.com/sn6UUrJ.png)
 
 ### Create Layer  To call N times [Class Decoding_layer()](Decoding_layer.py)
