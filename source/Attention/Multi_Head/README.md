@@ -1,0 +1,18 @@
+- **Argument** : 
+	- `dim`: the *representation size* of each token
+	- `nbr_heads` : *number of [Attention Head](../compute_attention/compute.py)*
+- __init__() :
+	- *assign* `dim` and `nbr_heads` to the class
+	- *create* `heads_dim` with [Compute_heads_dimensions()](../compute_attention/compute.py)
+- **Define the same Construction** :
+	- *Create* 3 [Tensor](../tensor_projection/tensor.py) for the 3 queries 
+- **Define Layer Calculation** :
+
+	- *Fetch* the 3 [Tensor](../tensor_projection/tensor.py)
+	- *retrieve* the Batch-Size
+	- *recover* the sequence size
+	- [Duplicate_all_Tensor()](../tensor_projection/tensor.py)
+	- *Create* the N [Attention Head](../compute_attention/compute.py) with [compute_all_attention_heads()](../compute_attention/compute.py)
+	- *Assemble* the Heads with [Concatenate_attention_heads()](../compute_attention/compute.py)
+	- *Create* projection 
+	- *Return* the representation of the sequence

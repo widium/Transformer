@@ -1,119 +1,22 @@
 # Attention
-- [1. Scaled Dot Product Attention ](#scaled-dot-product-attention )
-	- [1. Query Projection](#query-projection)
+- [1. Attention Mecanism](#attention-mecanism)
+- [2. Scaled Dot Product Attention ](#scaled-dot-product-attention )
+	- [1. Query Projection](tensor_projection/tensor.py)
 	- [2. Compute Attention](#compute-attention)
-- [2. Self Attention](#self-attention)
-- [3. Multi Head Attention](#multi-head-attention)
-
-
-## [Class Attention_Layer()](Attention.py)
-Create Layer of Keras With [3 Tensor Projection Model](../../README.md#query-projection)
-- Define  3 Tensor with a **representation** of `256` in this case
-- Calculate the attention with [compute_attention()](../../README.md#scaled-dot-product-attention)
-
-# Multi Head Attention
-
-## [Class Multi_Head_Attention_Layer()](Multi_Head_Attention.py)
-- **Argument** : 
-	- `dim`: the *representation size* of each token
-	- `nbr_heads` : *number of [Attention Head](../../README.md#scaled-dot-product-attention)*
-- __init__() :
-	- *assign* `dim` and `nbr_heads` to the class
-	- *create* `heads_dim` with [Compute_heads_dimensions()](../../README.md#compute-the-representation-size-of-the-tensor-sub-models)
-- **Define the same Construction** :
-	- *Create* 3 [Tensor](../../README.md#query-projection) for the 3 queries 
-- **Define Layer Calculation** :
-
-	- *Fetch* the 3 [Tensor](../../README.md#query-projection)
-	- *retrieve* the Batch-Size
-	- *recover* the sequence size
-	- [Duplicate_all_Tensor()](../../README.md#duplicate-tensor)
-	- *Create* the N [Attention Head](../../README.md#scaled-dot-product-attention) with [compute_all_attention_heads()](../../README.md#compute-attention)
-	- *Assemble* the Heads with [Concatenate_attention_heads()](../../README.md#concatenate-attention)
-	- *Create* projection 
-	- *Return* the representation of the sequence
-## [Class Masked_Multi_Head_Attention_Layer()](Multi_Head_Attention.py) && [Class Multi_Head_Encoder_Attention_Layer()](Multi_Head_Attention.py)
-
-### [Class Masked_Multi_Head_Attention_Layer()](Multi_Head_Attention.py)
- Change the Computation of the Attention Head
-- With the Masked Softmax we will [[Compute_masked_attention_heads()]] for each query by **masking the future tokens** :
-
-### *The only difference with the Multi_Head_Attention
-- ##### *adding a mask in parameters* 
-- ##### *a different attention calculation*
-
+- [3. Self Attention](#self-attention)
+- [4. Multi Head Attention](#multi-head-attention)
 
 ## Attention Mecanism
 Contrary to Multi-Layer-Perceptron or CNN, the Attention mechanism allows a dynamic connection between 2 Layers,  it allows to choose which information will be sent to the next layer !
 the model learn on which information it should focus its attention.
 
 ![](https://i.imgur.com/eL8ptdI.png)
-### Scaled Dot Product Attention 
+## Scaled Dot Product Attention 
 
-To create Attention we need to create 3 Projections of the Input Tensor called **$\large Q$ $\large K$ $\large V$**
+To create Attention we need to create 3 [Projection](tensor_projection/tensor.py) of the Input Tensor called **$\large Q$ $\large K$ $\large V$** and [Compute Attention](compute_attention/compute.py)
 
-***
-###  Compute Attention
-
-~~~python
-def compute_attention(Q : Tensor, K : Tensor, V : Tensor):
-    
-    QK = create_attention_vector(Q, K)
-    QK_N = normalize_vector(QK)
-    QK_S = create_vector_probability_attention(QK_N)
-    attention = add_attention_to_value(QK_S, V)
-    
-    return (attention)
-~~~
 ![](https://i.imgur.com/Sq2oXr2.png)
-
-~~~python
-from keras.layers import Dense
-from tensorflow import Tensor
-from tensorflow.nn import softmax
-from tensorflow.math import sqrt
-from tensorflow import matmul
-~~~
-#### *1. Recuperation de L'input Tensor*
-~~~python
-input = tf.random.uniform((1, 5, 256))
-
-(1, 5, 256)
-~~~
-#### *2. Initialiser les 3 Model de Projection de Tensor*
-~~~python
-Q = Dense(256, name= 'query')(input)
-K = Dense(256, name= 'key')(input)
-V = Dense(256, name= 'value')(input)
-
-
-print(f"Q : {Q.shape}")
-print(f"K : {K.shape}")
-print(f"V : {V.shape}")
-
-Q : (1, 1, 256)
-K : (1, 5, 256)
-V : (1, 5, 256)
-~~~
-### *3. Compute Attention*
-~~~python
-attention = compute_attention(Q, K, V)
-~~~
-
-~~~python
-(1, 5, 256) tf.Tensor(
-[ 0.00851879  0.00807548 -0.02141227 ... -0.00488998 -0.02339829
-    0.01425959]
-  [ 0.008518    0.00807689 -0.02140853 ... -0.00489697 -0.02340104
-    0.01425432]
-  [ 0.00852995  0.00806922 -0.02142657 ... -0.00489593 -0.0234261
-    0.01429098]
-  [ 0.00852115  0.00808086 -0.02140692 ... -0.00489073 -0.02340939
-    0.01425311]
-  [ 0.00852582  0.00807407 -0.02141737 ... -0.00488885 -0.02341493
-    0.0142769 ], shape=(1, 5, 256), dtype=float32)
-~~~
-
+***
 ### Self Attention
 - la self attention permet de **creer de l'attention sur tous les token de la sequence en meme temps !**
 - et donc chaque token fera egalement de *l'attention sur lui meme.*
@@ -227,3 +130,17 @@ Attention_concatenate = reshape(Attention_heads,
 
 Attention_concatenate (1, 5, 256)
 ~~~
+
+## [Class Attention_Layer()](Attention.py)
+Create Layer of Keras With [3 Tensor Projection Model](../../README.md#query-projection)
+- Define  3 Tensor with a **representation** of `256` in this case
+- Calculate the attention with [compute_attention()](../../README.md#scaled-dot-product-attention)
+
+# Multi Head Attention
+
+## [Class Multi_Head_Attention_Layer()](Multi_Head/Multi_Head_Attention.py)
+## [Class Masked_Multi_Head_Attention_Layer()](Multi_Masked/multi_masked.py)
+## [Class Multi_Head_Encoder_Attention_Layer()](Multi_Encoder_Attention/multi_encoder_attention.py)
+
+
+
