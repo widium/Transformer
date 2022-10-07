@@ -1,5 +1,7 @@
 # Decoder
 
+![](https://i.imgur.com/TFIaC1G.png)
+
 ## [Class Decoding_layer()](Decoding_layer.py)
 #### Make the Scaled Dot Product Attention on : 
 - *on the Output Embedding*
