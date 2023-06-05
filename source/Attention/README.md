@@ -39,6 +39,11 @@ V = Dense(256, name= 'value')(Tensor)
 ### Compute Attention
 
 ~~~python
+from compute import create_attention_vector
+from compute import normalize_vector
+from compute import create_vector_probability_attention
+from compute import add_attention_to_value
+
 def compute_attention(Q : Tensor, K : Tensor, V : Tensor):
     
     QK = create_attention_vector(Q, K)
