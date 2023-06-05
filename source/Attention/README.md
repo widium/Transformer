@@ -61,15 +61,7 @@ from tensorflow import Tensor
 from tensorflow.nn import softmax
 from tensorflow.math import sqrt
 from tensorflow import matmul
-~~~
-#### *1. Recuperation de L'input Tensor*
-~~~python
-input = tf.random.uniform((1, 5, 256))
 
-(1, 5, 256)
-~~~
-#### *2. Initialiser les 3 Model de Projection de Tensor*
-~~~python
 Q = Dense(256, name= 'query')(input)
 K = Dense(256, name= 'key')(input)
 V = Dense(256, name= 'value')(input)
@@ -79,16 +71,13 @@ print(f"Q : {Q.shape}")
 print(f"K : {K.shape}")
 print(f"V : {V.shape}")
 
-Q : (1, 1, 256)
-K : (1, 5, 256)
-V : (1, 5, 256)
-~~~
-### *3. Compute Attention*
-~~~python
-attention = compute_attention(Q, K, V)
-~~~
+#Q : (1, 1, 256)
+#K : (1, 5, 256)
+#V : (1, 5, 256)
 
-~~~python
+attention = compute_attention(Q, K, V)
+
+>>>
 (1, 5, 256) tf.Tensor(
 [ 0.00851879  0.00807548 -0.02141227 ... -0.00488998 -0.02339829
     0.01425959]
